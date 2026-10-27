@@ -1,0 +1,22 @@
+//@version=5
+indicator("CB Traders BD - Institutional HFT Signal Engine", overlay=true)
+
+// Inputs
+fastLength = input.int(9, "Fast EMA")
+slowLength = input.int(21, "Slow EMA")
+
+fastEma = ta.ema(close, fastLength)
+slowEma = ta.ema(close, slowLength)
+
+bullishCondition = ta.crossover(fastEma, slowEma)
+bearishCondition = ta.crossunder(fastEma, slowEma)
+
+plot(fastEma, "Fast EMA", color=color.aqua)
+plot(slowEma, "Slow EMA", color=color.orange)
+
+// Alert Payloads for CB Traders BD Webhook Bridge
+if bullishCondition
+    alert('{"asset":"' + syminfo.ticker + '","action":"CALL","duration_seconds":60,"broker":"Quotex","signature":"demo_sig"}', alert.freq_once_per_bar_close)
+
+if bearishCondition
+    alert('{"asset":"' + syminfo.ticker + '","action":"PUT","duration_seconds":60,"broker":"Quotex","signature":"demo_sig"}', alert.freq_once_per_bar_close)

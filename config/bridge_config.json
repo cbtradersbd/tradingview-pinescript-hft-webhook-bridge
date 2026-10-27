@@ -1,0 +1,12 @@
+{
+  "server_name": "CB Traders BD HFT Webhook Router",
+  "version": "4.1.0",
+  "supported_brokers": [
+    "Quotex",
+    "PocketOption",
+    "IQOption",
+    "Binolla"
+  ],
+  "rate_limit_per_minute": 120,
+  "enforce_hmac": true
+}
