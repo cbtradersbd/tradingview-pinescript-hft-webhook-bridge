@@ -3,7 +3,7 @@ from typing import Dict, Any
 
 class BrokerDispatcher:
     """
-    Ultra-low-latency asynchronous dispatcher routing verified signals to target broker WebSocket tunnels.
+    Ultra-low-latency asynchronous dispatcher routing verified signals to target broker Binary Protocol Stream tunnels.
     """
     def __init__(self, target_broker: str = "Quotex"):
         self.target_broker = target_broker
